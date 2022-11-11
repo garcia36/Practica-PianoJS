@@ -15,7 +15,7 @@ if(likesMusic === true){
 }
 //teclas seleccionadas funcionales
 const WHITE_KEYS = ['z','x','c','v','b','n','m'];
-const BLACK_KEYS = ['s','d','g','h','j'];
+const BLACK_KEYS = ['s','d','f','g','h'];
 
 //info html de las teclas
 const keys =  document.querySelectorAll('.key');
@@ -25,6 +25,13 @@ const blackKeys =  document.querySelectorAll('.key.black');
 const playNote = (key) => {
     const noteAudio = document.getElementById(key.dataset.note);
     noteAudio.play();
+       // Añadimos clase active
+       key.classList.add('active');
+       // Agregamos un event listener al estado ended del evento keydown
+       noteAudio.addEventListener('ended', () => {
+         // Cuando termine de reproducirse el sonido, removemos clase active
+         key.classList.remove('active');
+       });
 }
 document.addEventListener('keydown',(e)=>{//z
     //si se repite el evento
